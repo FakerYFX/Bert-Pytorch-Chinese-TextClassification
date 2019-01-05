@@ -24,7 +24,7 @@ python3 convert_tf_checkpoint_to_pytorch.py \
 
 ### Step 3
 
-Download the Chinese News DataSet:[Train](https://pan.baidu.com/s/15rkzx-YRbP5XRNeapzYWLw) and [Dev](https://pan.baidu.com/s/1HuYTacgAQFqGAJ8FYXNqOw) 
+Download the Chinese News DataSet:[Train](https://pan.baidu.com/s/15rkzx-YRbP5XRNeapzYWLw) for 5w and [Dev](https://pan.baidu.com/s/1HuYTacgAQFqGAJ8FYXNqOw) for 5k
 
 ### Step 4
 
@@ -50,9 +50,18 @@ python3 run_classifier_word.py \
   --max_seq_length 256 \
   --train_batch_size 24 \
   --learning_rate 2e-5 \
-  --num_train_epochs 1000.0 \
+  --num_train_epochs 50.0 \
   --output_dir ./newsAll_output/ \
   --local_rank 3
+```
+
+1个Epoch的结果如下：
+
+```
+eval_accuracy = 0.9742
+eval_loss = 0.10202122390270234
+global_step = 2084
+loss = 0.15899521649851786
 ```
 
 
