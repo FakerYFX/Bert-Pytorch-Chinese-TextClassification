@@ -1,6 +1,42 @@
 # Bert-Pytorch-Chinese-TextClassification
 Pytorch Bert Finetune in Chinese Text Classification
 
+---
+
+### Update
+
+* Add save / load function to save and load the model that you trained
+
+When the training finished,the model will be saved in `/src`
+
+```python
+# add optional arg --from_trained(bool default False)
+# if True then evoke 
+model = torch.load(arg.init_checkpoint)
+
+# if False then evoke like original
+model = BertForSequenceClassification(...)
+model.bert.load_state_dict(...)
+```
+
+* Add more evaluation index(when doing bi-classification task like check real or fake):
+  * precision
+  * recall
+  * F1
+
+```python
+# add optional arg --is_bi-classification(bool default True)
+# if True then enable calculating
+if args.is_bi-classification:
+    bin_out = np.argmax(logits, axis=1)
+    TP += ((bin_out == label_ids) & (label_ids == 0)).sum().item()
+    FP += ((bin_out != label_ids) & (label_ids == 0)).sum().item()
+    TN += ((bin_out == label_ids) & (label_ids == 1)).sum().item()
+    FN += ((bin_out != label_ids) & (label_ids == 1)).sum().item()
+```
+
+---
+
 ### Step 1
 
 Download the pretrained TensorFlow model:[chinese_L-12_H-768_A-12](https://storage.googleapis.com/bert_models/2018_11_03/chinese_L-12_H-768_A-12.zip)
