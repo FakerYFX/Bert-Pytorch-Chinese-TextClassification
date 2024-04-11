@@ -411,7 +411,7 @@ def main():
                         default=False,
                         type=bool,
                         help="Whether the checkpoint you load is trained")
-    parser.add_argument("--is_bi-classification",
+    parser.add_argument("--is_bi_classification",
                         default=True,
                         type=bool,
                         help="Whether the task only have two kinds of label(like real and fake)")
@@ -688,7 +688,7 @@ def main():
             label_ids = label_ids.to('cpu').numpy()
             tmp_eval_accuracy = accuracy(logits, label_ids)
 
-            if args.is_bi-classification:
+            if args.is_bi_classification:
                 bin_out = np.argmax(logits, axis=1)
                 TP += ((bin_out == label_ids) & (label_ids == 0)).sum().item()
                 FP += ((bin_out != label_ids) & (label_ids == 0)).sum().item()
